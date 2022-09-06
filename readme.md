@@ -6,4 +6,6 @@
 
 ```bash
 cat list.txt | while read link; do wget $link; done
+#or while read link; do wget $link; done < list.txt
 ```
+
