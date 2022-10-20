@@ -15,3 +15,16 @@ url=https://3s-hrl.amazonaws.com/; curl $url | grep -oP '(?<=<Key>).*?(?=</Key>)
 ```bash
 cat raw.txt | grep 'org-people-profile-card__profile-title t-black lt-line-clamp lt-line-clamp--single-line ember-view' | cut -d '>' -f 2 | grep -v 'LinkedIn Member' | sort -u
 ```
+
+## Download all videos from INE page
+### click all videos in INE page filter network traffic for media and string "1.ts"
+```js
+for (let i = 1; i <= document.getElementsByClassName('btn btn--secondary level__btn-sub').length; i++) {
+    document.getElementsByClassName('btn btn--secondary level__btn-sub')[i].click();await new Promise(r => setTimeout(r, 5000));
+}
+```
+## tahn, in network pange, right click and select "save all as HAR file"
+## in terminal run 
+```bash  
+cat my.ine.com.har | grep jwpsrv | grep mp4-1.ts | grep url | cut -d'"' -f4 | sed -s 's/-1.ts//g'
+```
