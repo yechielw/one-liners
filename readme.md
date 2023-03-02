@@ -10,6 +10,9 @@ while read link; do wget $link; done < list.txt
 ## Extract url from open s3 bucket
 ```bash
 url=https://3s-hrl.amazonaws.com/; curl $url | grep -oP '(?<=<Key>).*?(?=</Key>)' | awk '{print $url$1} | tee list.txt'
+
+#or
+~/go/bin/xq -q 'ListBucketResult > Contents > Key'  cyber.org.il.xml | tee list.txt
 ```
 ## extract members from LinkedIn company (First, copy the raw data from your browser into raw.txt)
 ```bash
