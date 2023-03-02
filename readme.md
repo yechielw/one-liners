@@ -28,3 +28,12 @@ for (let i = 1; i <= document.getElementsByClassName('btn btn--secondary level__
 ```bash  
 cat my.ine.com.har | grep jwpsrv | grep mp4-1.ts | grep url | cut -d'"' -f4 | sed -s 's/-1.ts//g'
 ```
+
+## find company user names from pdf files
+requirements: go-dork, exiftool
+```bash
+go-dork -q "site:hatanur.co.il ext:pdf" -p 10 -s >> list.txt
+wget -i list.txt
+for i in *.pdf; do exiftool -creator -author  $i; done | cut -d: -f2 | sort -uf | grep -v ® 
+
+```
